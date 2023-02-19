@@ -53,6 +53,21 @@ async def showid(client, message):
             _id,
             quote=True
         )
+@Client.on_message(filters.command("about"))
+async def aboutme(client, message):
+        buttons= [[
+            InlineKeyboardButton(' 𝙳𝙴𝙿𝙻𝙾𝚈 𝚃𝚄𝚃𝙾𝚁𝙸𝙰𝙻 ', url='https://www.youtube.com/shorts/v3TtNplrek4')
+            ],[
+            InlineKeyboardButton(' 𝙷𝙾𝙼𝙴 ', callback_data='start'),
+            InlineKeyboardButton(' 𝙲𝙻𝙾𝚂𝙴 ', callback_data='close_data')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=script.ABOUT_TXT.format(message.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML,
+        )
 
 @Client.on_message(filters.command(["info"]))
 async def who_is(client, message):
